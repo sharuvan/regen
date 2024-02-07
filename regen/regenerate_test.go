@@ -8,14 +8,15 @@ import (
 )
 
 const FILE = "../testdata/cats.zip"
-const N = 10
-const ERRORS = 10000
-const BURSTS = 10
-const PARITY_PERCENTAGE = 5
+const N = 100
+const ERRORS = 1000
+const BURSTS = 1
+const PARITY_PERCENTAGE = 10
 const CHECKSUM_BLOCK_LENGTH = 64
 const VERBOSE = false
 
 func TestRegenerate(t *testing.T) {
+	insertRandomBitErrors(FILE, 10)
 	err := Regenerate(FILE, 1023, VERBOSE)
 	if err != nil {
 		t.Error(err)

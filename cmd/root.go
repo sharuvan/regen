@@ -1,6 +1,3 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -30,7 +27,7 @@ that to regenerate the file in case of integrity loss`,
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
 		if ver {
-			fmt.Println("Regen v1.0")
+			fmt.Printf("Regen %v\n", regen.PROGRAM_VERSION)
 		}
 	},
 }
@@ -40,7 +37,10 @@ var generateCmd = &cobra.Command{
 	Short: "Generate hash and redundancy data",
 	// Long:  `All software has versions. This is Hugo's`,
 	Run: func(cmd *cobra.Command, args []string) {
-		regen.Generate(file, percentage, checksumBlockLength, true)
+		err := regen.Generate(file, percentage, checksumBlockLength, true)
+		if err != nil {
+			fmt.Println(err)
+		}
 	},
 }
 
@@ -49,7 +49,10 @@ var verifyCmd = &cobra.Command{
 	Short: "Verify data integrity",
 	// Long:  `All software has versions. This is Hugo's`,
 	Run: func(cmd *cobra.Command, args []string) {
-		regen.Verify(file, true)
+		err := regen.Verify(file, true)
+		if err != nil {
+			fmt.Println(err)
+		}
 	},
 }
 
@@ -59,7 +62,10 @@ var regenerateCmd = &cobra.Command{
 	// Long:  `All software has versions. This is Hugo's`,
 	Run: func(cmd *cobra.Command, args []string) {
 		// regenerate(file)
-		regen.Regenerate(file, bruteforceLimit, true)
+		err := regen.Regenerate(file, bruteforceLimit, true)
+		if err != nil {
+			fmt.Println(err)
+		}
 	},
 }
 
@@ -98,6 +104,6 @@ func init() {
 	rootCmd.Flags().BoolVarP(&ver, "version", "v", false, "Show version information")
 	rootCmd.PersistentFlags().StringVarP(&file, "file", "f", "", "Archive file to work on")
 	generateCmd.Flags().IntVarP(&percentage, "percentage", "p", 10, "Redundancy percentage")
-	generateCmd.Flags().IntVarP(&checksumBlockLength, "checksum", "c", 128, "Checksum block length")
+	generateCmd.Flags().IntVarP(&checksumBlockLength, "checksum", "c", 64, "Checksum block length")
 	regenerateCmd.Flags().IntVarP(&bruteforceLimit, "bruteforce-limit", "b", 1023, "Bruteforce limit")
 }
