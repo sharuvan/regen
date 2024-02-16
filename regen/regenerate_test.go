@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"sort"
 	"testing"
 )
 
@@ -47,8 +48,24 @@ func insertRandomBurstErrors(filename string, n int, bursts int) {
 	defer archiveFile.Close()
 	fileInfo, _ := os.Stat(filename)
 	bitLength := fileInfo.Size() * 8
-	errorBits := generateUniqueRandomNumbers(bursts, int(bitLength))
 	burstLengths := distributeNumbers(n, bursts)
+	var errorBits = []int{}
+	// prevent overflow
+	overflow := true
+	for overflow {
+		overflow = false
+		errorBits = generateUniqueRandomNumbers(bursts, int(bitLength))
+		for burst := 0; burst < bursts-1; burst++ {
+			if errorBits[burst+1]-errorBits[burst] < burstLengths[burst] {
+				overflow = true
+				break
+			}
+		}
+		if (bitLength-1)-int64(errorBits[bursts-1]) <
+			int64(burstLengths[bursts-1]) {
+			overflow = true
+		}
+	}
 	for i, index := range errorBits {
 		for j := 0; j < burstLengths[i]; j++ {
 			flipByte := int(float64((index + j) / 8))
@@ -120,5 +137,6 @@ func generateUniqueRandomNumbers(n, upperLimit int) []int {
 	for num := range uniqueNumbers {
 		result = append(result, num)
 	}
+	sort.Ints(result)
 	return result
 }
