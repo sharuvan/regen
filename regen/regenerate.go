@@ -15,6 +15,7 @@ type correctedBlockType struct {
 	checksumBlockCombinationBuffer []byte
 }
 
+// Regenerates the original archive using data from regen file
 func Regenerate(filename string, bruteforceLimit int, verbose bool) error {
 	if verbose {
 		defer timer("Regenerate")()

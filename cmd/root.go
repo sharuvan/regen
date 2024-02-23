@@ -20,9 +20,9 @@ var (
 var rootCmd = &cobra.Command{
 	Use:   "regen",
 	Short: "Redundancy Generator",
-	Long: `Regen is a data redundancy generator used to generate
-an arbitrary amount of data for a given file and use
-that to regenerate the file in case of integrity loss`,
+	Long: `Regen uses data redundancy techniques to generate redundant data
+	on archive files and uses the produced regen file to restore the
+	integrity of the original archive file when verification fails`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {

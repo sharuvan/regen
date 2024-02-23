@@ -8,6 +8,7 @@ import (
 	"os"
 )
 
+// Generates a regen file and SHA256 hash file out of given archive file
 func Generate(filename string, percentage int, checksumBlockLength int,
 	verbose bool) error {
 	if verbose {

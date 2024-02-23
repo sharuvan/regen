@@ -11,7 +11,7 @@ import (
 const FILE = "../testdata/cats.zip"
 const N = 100
 const ERRORS = 1000
-const BURSTS = 1
+const BURSTS = 10
 const PARITY_PERCENTAGE = 10
 const CHECKSUM_BLOCK_LENGTH = 64
 const VERBOSE = false
@@ -27,7 +27,7 @@ func TestRegenerate(t *testing.T) {
 func BenchmarkRandomBurst(b *testing.B) {
 	fails := 0
 	for i := 0; i < N; i++ {
-		fmt.Println("running test", i+1)
+		fmt.Println("Running test", i+1)
 		Generate(FILE, PARITY_PERCENTAGE, CHECKSUM_BLOCK_LENGTH, VERBOSE)
 		insertRandomBurstErrors(FILE, ERRORS, BURSTS)
 		err := Regenerate(FILE, 1023, VERBOSE)
@@ -40,7 +40,7 @@ func BenchmarkRandomBurst(b *testing.B) {
 			}
 		}
 	}
-	fmt.Printf("%d out of %d burst error benchmark tests failed\n", fails, N)
+	fmt.Printf("%d out of %d burst error benchmark tests passed\n", N-fails, N)
 }
 
 func insertRandomBurstErrors(filename string, n int, bursts int) {
@@ -95,7 +95,7 @@ func distributeNumbers(n, m int) map[int]int {
 func BenchmarkRandomBit(b *testing.B) {
 	fails := 0
 	for i := 0; i < N; i++ {
-		fmt.Println("running test", i+1)
+		fmt.Println("Running test", i+1)
 		Generate(FILE, PARITY_PERCENTAGE, CHECKSUM_BLOCK_LENGTH, VERBOSE)
 		insertRandomBitErrors(FILE, ERRORS)
 		err := Regenerate(FILE, 1023, VERBOSE)
@@ -108,7 +108,7 @@ func BenchmarkRandomBit(b *testing.B) {
 			}
 		}
 	}
-	fmt.Printf("%d out of %d bit error benchmark tests failed\n", fails, N)
+	fmt.Printf("%d out of %d bit error benchmark tests passed\n", N-fails, N)
 }
 
 func insertRandomBitErrors(filename string, n int) {

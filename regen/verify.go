@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// Verifies archive's data integrity using saved SHA256 hash
 func Verify(filename string, verbose bool) error {
 	if verbose {
 		defer timer("Verify")()
