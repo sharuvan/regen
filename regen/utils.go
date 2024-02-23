@@ -21,24 +21,6 @@ func xorParity(data *[][]byte) []byte {
 	return parity
 }
 
-func fletcher8(data []byte) uint8 {
-	var sum1, sum2 uint8
-	for _, value := range data {
-		sum1 = (sum1 + value) % 255
-		sum2 = (sum2 + sum1) % 255
-	}
-	return (sum2 << 4) | (sum1 & 0x0F)
-}
-
-func fletcher16Twos(data []byte) uint16 {
-	var sum1, sum2 uint8
-	for _, value := range data {
-		sum1 = (sum1 + value) % 255
-		sum2 = (sum2 + sum1) % 255
-	}
-	return (uint16(sum2) << 8) | uint16(sum1)
-}
-
 func fletcher16(data []byte) uint16 {
 	var sum1, sum2 uint16
 	for _, value := range data {
