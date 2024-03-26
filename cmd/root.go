@@ -103,7 +103,7 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolVarP(&ver, "version", "v", false, "Show version information")
 	rootCmd.PersistentFlags().StringVarP(&file, "file", "f", "", "Archive file to work on")
-	generateCmd.Flags().IntVarP(&percentage, "percentage", "p", 10, "Redundancy percentage")
+	generateCmd.Flags().IntVarP(&percentage, "percentage", "p", 5, "Redundancy percentage")
 	generateCmd.Flags().IntVarP(&checksumBlockLength, "checksum", "c", 64, "Checksum block length")
 	regenerateCmd.Flags().IntVarP(&bruteforceLimit, "bruteforce-limit", "b", 1023, "Bruteforce limit")
 }
