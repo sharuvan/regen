@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"path/filepath"
 )
 
 // Generates a regen file and SHA256 hash file out of given archive file
@@ -35,7 +36,8 @@ func Generate(filename string, percentage int, checksumBlockLength int,
 		return err
 	}
 	defer hashFile.Close()
-	hashFile.WriteString(hash + "  " + filename)
+	fileNameBase := filepath.Base(archiveFile.Name())
+	hashFile.WriteString(hash + "  " + fileNameBase)
 
 	fileInfo, err := os.Stat(filename)
 	if err != nil {

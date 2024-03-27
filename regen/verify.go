@@ -39,10 +39,10 @@ func Verify(filename string, verbose bool) error {
 	}
 	if strings.Compare(hash, archiveHash) == 0 {
 		if verbose {
-			fmt.Println("no errors in data integrity")
+			fmt.Println("No errors in data integrity")
 		}
 	} else {
-		return errors.New("data is corrupt. Use regenerate")
+		return errors.New("data is corrupt. use regenerate")
 	}
 	return nil
 }
