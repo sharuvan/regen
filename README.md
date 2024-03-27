@@ -17,7 +17,7 @@ This repository contains a Go module with packages "regen" and "cmd". The regen 
 
 ### Prerequisites
 
-Go compiler is required to install and build the program. It can be downloaded from [Go website](#https://go.dev/doc/install). The program is compatible with all major desktop platforms and CPU architectures.
+Go compiler is required to install and build the program. It can be downloaded from [Go website](https://go.dev/doc/install). The program is compatible with all major desktop platforms and CPU architectures.
 
 
 ### Installing
