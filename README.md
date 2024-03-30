@@ -63,10 +63,10 @@ The repository contains a sample archive file "cats.zip" in the root directory. 
 To execute burst error benchmarking:
 ```
 cp cats.zip testdata/cats.zip
-go test -run ^Benchmark -bench BenchmarkRandomBurst -count 1 -benchtime=1x ./regen
+go test -run ^Benchmark -bench BenchmarkRandomBurst -count 1 -benchtime=1x -timeout 0 ./regen
 ```
 To execute bit error benchmarking:
 ```
 cp cats.zip testdata/cats.zip
-go test -run ^Benchmark -bench BenchmarkRandomBit -count 1 -benchtime=1x ./regen
+go test -run ^Benchmark -bench BenchmarkRandomBit -count 1 -benchtime=1x -timeout 0 ./regen
 ```
