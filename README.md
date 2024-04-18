@@ -22,7 +22,7 @@ Go compiler is required to install and build the program. It can be downloaded f
 
 ### Installing
 
-To add the regen package into your go module:
+To add the regen package into your Go module:
 ```
 go get github.com/sharuvan/regen/regen
 ```
@@ -54,7 +54,7 @@ To regenerate archive file when corruption is detected:
 regen regenerate --file cats.zip
 ```
 
-A checksum block size of 64 bytes are more appropriate for archives smaller than 1GB. Using 128 byte checksum blocks will significantly increase the generate time.
+A checksum block size of 64 bytes are more appropriate for archives smaller than 1GB. Using 128 byte checksum blocks will significantly decrease the generate time.
 
 ## Benchmarking <a name = "benchmarking"></a>
 
