@@ -59,7 +59,7 @@ func Regenerate(filename string, bruteforceLimit int, verbose bool) error {
 		fmt.Println("Parity Block Length:", parityBlockLength)
 	}
 	if int(version) > VERSION {
-		return fmt.Errorf("regen file version %d not supported. Update the program", version)
+		return fmt.Errorf("regen file version %d not supported. update the program", version)
 	}
 
 	// iterate checksum blocks

@@ -42,28 +42,27 @@ func calculateSHA256(file *os.File) (string, error) {
 
 func generateCombinations(input []int, limit int) [][]int {
 	var result [][]int
-	n := 0
 	for length := len(input); length > 0; length-- {
-		generateRecursive(&result, input, []int{}, 0, length, limit, &n)
+		generateRecursive(&result, input, []int{}, 0, length, limit)
 	}
 	return result
 }
 
-func generateRecursive(result *[][]int, input, current []int, start,
-	length int, limit int, n *int) {
+func generateRecursive(result *[][]int, input []int, current []int, start int,
+	length int, limit int) {
+	if len(*result) >= limit {
+		return
+	}
 	if length == 0 {
 		combination := make([]int, len(current))
 		copy(combination, current)
 		*result = append(*result, combination)
-		*n++
-		return
-	}
-	if *n >= limit {
 		return
 	}
 	for i := start; i <= len(input)-length; i++ {
 		current = append(current, input[i])
-		generateRecursive(result, input, current, i+1, length-1, limit, n)
+		generateRecursive(result, input, current, i+1, length-1, limit)
+		// remove the last element for backtracking
 		current = current[:len(current)-1]
 	}
 }
