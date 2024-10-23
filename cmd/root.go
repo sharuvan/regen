@@ -26,8 +26,11 @@ var rootCmd = &cobra.Command{
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		// fmt.Printf("Regen %v\n", regen.PROGRAM_VERSION)
-		cmd.Help()
+		if ver {
+			fmt.Printf("Regen %v\n", regen.PROGRAM_VERSION)
+		} else {
+			cmd.Help()
+		}
 	},
 }
 
